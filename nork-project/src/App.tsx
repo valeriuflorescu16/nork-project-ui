@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import Home from "./pages/Home";
+import Header from "./UI/Header";
 
 function App() {
+  const [email, setEmail] = useState("");
+
+  const getEmail = (value: string) => {
+    setEmail(value);
+  };
+
+  useEffect(() => {
+    console.log(email);
+  }, [email]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header title="Nork Project" />
+      <br />
+      <Home setEmail={getEmail} />
     </div>
   );
 }

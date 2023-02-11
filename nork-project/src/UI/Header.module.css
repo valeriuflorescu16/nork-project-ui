@@ -1,0 +1,12 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 15%;
+  background-color: #f2f2f2;
+}
+
+.headerTitle {
+  font-size: 46px;
+  color: rgb(47, 45, 45);
+}
