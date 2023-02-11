@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
+import Information from "./pages/Information";
 import Header from "./UI/Header";
 
 function App() {
@@ -10,15 +12,15 @@ function App() {
     setEmail(value);
   };
 
-  useEffect(() => {
-    console.log(email);
-  }, [email]);
-
   return (
     <div className="App">
       <Header title="Nork Project" />
-      <br />
-      <Home setEmail={getEmail} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home setEmail={getEmail} />} />
+          <Route path="/info" element={<Information />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
