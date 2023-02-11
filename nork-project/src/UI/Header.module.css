@@ -1,13 +1,17 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 20px 50px;
+  background-color: #fff;
   margin-bottom: 2.5%;
-  height: 15%;
-  background-color: #f2f2f2;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .headerTitle {
-  font-size: 46px;
-  color: rgb(47, 45, 45);
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+  margin-left: 2.5%;
+  text-transform: uppercase;
 }
