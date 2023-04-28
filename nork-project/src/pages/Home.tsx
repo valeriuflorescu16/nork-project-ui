@@ -1,31 +1,37 @@
-import React, { FC } from "react";
+import React, { useState } from "react";
 
 import classes from "./Home.module.css";
+import SubscribeModal from "../UI/SubscribeModal";
 
-const Home: FC<{
-  setEmail: (email: string) => void;
-}> = (props) => {
+const Home = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const onCloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
-    <div className={classes.container}>
-      <div className={classes.card}>
-        <p className={classes.cardText}>
-          Subscribe to our email service to receive information about what is
-          going on in your neighbourhood. This will keep you in the loop with
-          everything that is happening in your area.
+    <div className={classes.homeContainer}>
+      <div className={classes.homeCard}>
+        <h1 className={classes.homeTitle}>Welcome to RADAR</h1>
+        <p className={classes.homeInfo}>
+          A community-based digital alert system notifying Nork residents to new
+          development in your area. The council's current approach to paper
+          distribution of notifications to new development is too narrow, and
+          therefore, undemocratic. The wider the warning the higher number of
+          residents have the opportunity to comment and log their objections
+          without missing vital deadlines. Don't let new development take you by
+          surprise and overshadow your and your neighbor's family homes and
+          gardens!
         </p>
-        <div className={classes.form}>
-        <label className={classes.label} htmlFor="email">
-          Email
-        </label>
-        <input
-          type="email"
-          id="email"
-          maxLength={100}
-          onChange={(e) => props.setEmail(e.target.value)}
-          className={classes.input}
-        />
-        </div>
+        <button
+          className={classes.homeButton}
+          onClick={() => setShowModal(true)}
+        >
+          Sign up now
+        </button>
       </div>
+      <SubscribeModal showModal={showModal} onCloseModal={onCloseModal} />
     </div>
   );
 };

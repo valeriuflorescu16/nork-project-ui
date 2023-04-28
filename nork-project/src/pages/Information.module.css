@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5%;
+  margin-top: 5%;
+}
+
+.image {
+  width: 200px;
+  margin-right: 7.5%;
+  box-shadow: 10px 10px 5px rgb(106, 135, 106);
+}
+
+.image:hover {
+  scale: 1.15;
+  cursor: pointer;
+}
+
+.infoContainer {
+  max-width: 800px;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 20px;
+}

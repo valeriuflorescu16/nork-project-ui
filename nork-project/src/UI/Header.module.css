@@ -2,16 +2,52 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 12%;
   padding: 20px 50px;
   background-color: #fff;
-  margin-bottom: 2.5%;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .headerTitle {
-  font-size: 32px;
+  font-size: 25px;
   font-weight: bold;
-  color: #333;
-  margin-left: 2.5%;
+  color: var(--text-color);
+  margin-left: 5%;
   text-transform: uppercase;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.logo {
+  height: 80px;
+  margin-left: 1.5%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.headerLinks {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.headerLinks a {
+  margin-left: 20px;
+  font-size: 16px;
+  color: #333;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: transparent;
+}
+
+.headerLinks a:hover {
+  color: #5da2ec;
+  text-decoration-color: #007bff;
+}
+
+.active {
+  text-decoration-color: #333 !important;
 }

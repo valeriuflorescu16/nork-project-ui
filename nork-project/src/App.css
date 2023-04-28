@@ -1,4 +1,14 @@
+:root {
+  --primary-color: white;
+  --secondary-color: #f8f9f2;
+  --tertiary-color: #d9dfab;
+  --quarternary-color: #cdfff9;
+  --text-color: #333;
+}
+
 .App {
   text-align: center;
   font-family: "Times New Roman", Times, serif;
+  height: 100vh;
+  overflow-y: scroll;
 }

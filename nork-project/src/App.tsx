@@ -1,26 +1,26 @@
-import React, { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
 import Information from "./pages/Information";
 import Header from "./UI/Header";
 
-function App() {
-  const [email, setEmail] = useState("");
+const getPageTitle = (page: string) => {
+  if (page === "/") return "Home";
+  if (page === "/info") return "About RADAR";
+  else return "Home";
+};
 
-  const getEmail = (value: string) => {
-    setEmail(value);
-  };
+function App() {
+  const currPage = useLocation().pathname;
 
   return (
     <div className="App">
-      <Header title="Nork Project" />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home setEmail={getEmail} />} />
-          <Route path="/info" element={<Information />} />
-        </Routes>
-      </BrowserRouter>
+      <Header title={getPageTitle(currPage)} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/info" element={<Information />} />
+      </Routes>
     </div>
   );
 }

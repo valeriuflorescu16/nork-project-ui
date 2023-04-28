@@ -1,0 +1,104 @@
+.modal {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.762);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.closeModalButton {
+  background-color: transparent;
+  border: none;
+  color: #e44949;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 0;
+  position: absolute;
+  top: 2.5%;
+  right: 2.5%;
+}
+
+.modalContent {
+  background-color: white;
+  padding: 20px;
+  width: 40%;
+  height: fit-content;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.title {
+  margin-top: 0;
+  font-size: 24px;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2%;
+  width: 100%;
+}
+
+.label {
+  font-size: 18px;
+  margin-bottom: 1.25%;
+}
+
+.input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+.submitButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4caf50;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 3.5%;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #3e8e41;
+}
+
+.error {
+  color: rgb(237, 73, 73);
+}
+
+.errorBorder {
+  border-color: rgb(237, 73, 73) !important;
+}
