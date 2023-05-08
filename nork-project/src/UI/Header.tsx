@@ -10,7 +10,7 @@ const Header: FC<{
 
   return (
     <div className={classes.header}>
-      <img src="./logo.png" alt="Logo" className={classes.logo} />
+      <img src="/logo.png" alt="Logo" className={classes.logo} />
       <h1 className={classes.headerTitle}>{props.title}</h1>
       <div className={classes.headerLinks}>
         <Link to="/" className={currentPage === "/" ? classes.active : ""}>

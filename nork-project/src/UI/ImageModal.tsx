@@ -18,7 +18,7 @@ const ImageModal: FC<{
           alt="Selected Garden"
           className={classes.modalImage}
         />
-        <p>{props.imageDescription}</p>
+        <p className={classes.modalDescription}>{props.imageDescription}</p>
         <button onClick={props.closeModal} className={classes.closeModalButton}>
           &times;
         </button>
