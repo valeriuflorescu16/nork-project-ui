@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import classes from "./Login.module.css";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { loginAtom } from "../recoil/atoms/loginAtom";
+import { useNavigate } from "react-router-dom";
 const url = process.env.REACT_APP_URL;
 
 const Login = () => {
@@ -10,7 +11,15 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const setToken = useSetRecoilState(loginAtom);
+  const navigate = useNavigate();
+
+  const [token, setToken] = useRecoilState(loginAtom);
+
+  useEffect(() => {
+    if (token) {
+      navigate("/admin/dashboard");
+    }
+  }, [token, navigate]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,7 +30,7 @@ const Login = () => {
     }
 
     const errorMessage =
-      "Authentication Failed. Make sure the email and password that you have provided are correct and try again.";
+      "Authentication failed. Make sure the email and password that you have provided are correct and try again.";
 
     try {
       const response = await fetch(`${url}/admin/login`, {

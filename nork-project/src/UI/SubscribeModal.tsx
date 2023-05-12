@@ -49,7 +49,6 @@ const SubscribeModal: FC<{
       onCloseModal();
     } catch (error) {
       if (error instanceof Error && error.message) {
-        console.log(error);
         error.message.includes("Bad Request")
           ? setErr("Email is already in our mailing list.")
           : setErr("Something went wrong. Please try again...");

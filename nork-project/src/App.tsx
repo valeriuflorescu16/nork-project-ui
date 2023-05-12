@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className="App">
-      {!currPage.includes("login") && <Header title={getPageTitle(currPage)} />}
+      {!currPage.includes("admin") && <Header title={getPageTitle(currPage)} />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/info" element={<Information />} />

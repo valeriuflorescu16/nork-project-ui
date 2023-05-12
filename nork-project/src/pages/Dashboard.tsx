@@ -1,26 +1,34 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import classes from "./Dashboard.module.css";
+import { getAttachments } from "../utils";
+import { useRecoilValue } from "recoil";
+import { loginAtom } from "../recoil/atoms/loginAtom";
+
+const url = process.env.REACT_APP_URL;
 
 interface Email {
   subject: string;
-  body: string[];
+  message: string[];
   attachments: File[];
 }
 
 const Dashboard = () => {
+  const attachmentsRef = useRef<HTMLInputElement>(null);
   const [email, setEmail] = useState<Email>({
     subject: "",
-    body: [""],
+    message: [""],
     attachments: [],
   });
+  const [err, setErr] = useState<string>("");
+  const token = useRecoilValue(loginAtom);
 
   const handleParagraphChange = (index: number, value: string) => {
     setEmail((prevEmail) => ({
       ...prevEmail,
-      body: [
-        ...prevEmail.body.slice(0, index),
+      message: [
+        ...prevEmail.message.slice(0, index),
         value,
-        ...prevEmail.body.slice(index + 1),
+        ...prevEmail.message.slice(index + 1),
       ],
     }));
   };
@@ -28,14 +36,14 @@ const Dashboard = () => {
   const addParagraph = () => {
     setEmail((prevEmail) => ({
       ...prevEmail,
-      body: [...prevEmail.body, ""],
+      message: [...prevEmail.message, ""],
     }));
   };
 
   const removeParagraph = (index: number) => {
     setEmail((prevEmail) => ({
       ...prevEmail,
-      body: prevEmail.body.filter((_, i) => i !== index),
+      message: prevEmail.message.filter((_, i) => i !== index),
     }));
   };
 
@@ -48,15 +56,44 @@ const Dashboard = () => {
     setEmail((prevEmail) => ({ ...prevEmail, attachments }));
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // validate form here
+    const attachments = await getAttachments(email.attachments);
+
+    try {
+      const response = await fetch(`${url}/emails/custom`, {
+        method: "POST",
+        body: JSON.stringify({
+          subject: email.subject,
+          message: email.message,
+          attachments: attachments,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        setEmail({
+          subject: "",
+          message: [""],
+          attachments: [],
+        });
+        if (attachmentsRef.current) attachmentsRef.current.value = "";
+        setErr("");
+      } else if (!response.ok) {
+        throw new Error("Error with response");
+      }
+    } catch (err) {
+      setErr("Something went wrong. Please try again...");
+    }
   };
 
   const renderParagraphs = () => {
-    return email.body.map((paragraph, index) => {
+    return email.message.map((paragraph, index) => {
       return (
-        <div className={classes.paragraphContainer}>
+        <div key={index} className={classes.paragraphContainer}>
           <textarea
             key={index}
             className={classes.paragraph}
@@ -68,8 +105,9 @@ const Dashboard = () => {
               event.currentTarget.style.height = "auto";
               event.currentTarget.style.height = `${event.currentTarget.scrollHeight}px`;
             }}
+            required
           />
-          {email.body.length > 1 && (
+          {email.message.length > 1 && (
             <button
               type="button"
               className={classes.removeButton}
@@ -85,7 +123,7 @@ const Dashboard = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1 className={classes.formHeader}>Email builder</h1>
+      <h1 className={classes.formHeader}>RADAR Email builder</h1>
       <label htmlFor="subject">Subject</label>
       <input
         type="text"
@@ -111,18 +149,20 @@ const Dashboard = () => {
       </button>
       <br />
       <label htmlFor="attachments">
-        Attachments:{" "}
+        Attachments:
         <input
           type="file"
           id="attachments"
           className={classes.attachments}
           multiple
           onChange={(e) => handleFileSelect(e.target.files)}
+          ref={attachmentsRef}
         />
       </label>
       <button type="submit" className={classes.submitButton}>
         Send Email
       </button>
+      {err && <p className={classes.error}>{err}</p>}
     </form>
   );
 };

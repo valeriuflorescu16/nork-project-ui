@@ -2,10 +2,10 @@
   font-size: 24px;
   font-weight: bold;
   padding: 10px;
+  margin-top: 2.5%;
   margin-bottom: 2.5%;
   margin-left: auto;
   margin-right: auto;
-  background-color: #f1f8fa;
   width: 35%;
 }
 
@@ -89,6 +89,13 @@
 
 .attachments {
   margin: auto;
+}
+
+.error {
+  color: rgb(234, 83, 83);
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 label {
