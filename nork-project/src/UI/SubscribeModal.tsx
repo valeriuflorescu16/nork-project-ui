@@ -9,7 +9,8 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const SubscribeModal: FC<{
   showModal: boolean;
   onCloseModal: () => void;
-}> = ({ showModal, onCloseModal }) => {
+  subscribed: (v: boolean) => void;
+}> = ({ showModal, onCloseModal, subscribed }) => {
   const [email, setEmail] = useRecoilState(emailAtom);
   const resetEmail = useResetRecoilState(emailAtom);
   const [err, setErr] = useState("");
@@ -46,6 +47,7 @@ const SubscribeModal: FC<{
 
       setErr("");
       resetEmail();
+      subscribed(true);
       onCloseModal();
     } catch (error) {
       if (error instanceof Error && error.message) {

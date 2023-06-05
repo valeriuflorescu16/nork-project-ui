@@ -3,6 +3,7 @@ import classes from "./Dashboard.module.css";
 import { getAttachments } from "../utils";
 import { useRecoilValue } from "recoil";
 import { loginAtom } from "../recoil/atoms/loginAtom";
+import ConfirmationModal from "../UI/ConfirmationModal";
 
 const url = process.env.REACT_APP_URL;
 
@@ -20,6 +21,7 @@ const Dashboard = () => {
     attachments: [],
   });
   const [err, setErr] = useState<string>("");
+  const [isConfirmationOpen, setIsConfirmationOpen] = useState<boolean>(false);
   const token = useRecoilValue(loginAtom);
 
   const handleParagraphChange = (index: number, value: string) => {
@@ -56,8 +58,26 @@ const Dashboard = () => {
     setEmail((prevEmail) => ({ ...prevEmail, attachments }));
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSendEmail = () => {
+    if (!email.subject) {
+      setErr("The subject field cannot be empty.");
+      return;
+    }
+
+    for (let i = 0; i < email.message.length; i++) {
+      if (!email.message[i]) {
+        setErr(
+          "A paragraph has been left empty. Either remove it or add text to it to proceed."
+        );
+        return;
+      }
+    }
+
+    setErr("");
+    setIsConfirmationOpen(true);
+  };
+
+  const handleSubmit = async () => {
     const attachments = await getAttachments(email.attachments);
 
     try {
@@ -82,7 +102,9 @@ const Dashboard = () => {
         });
         if (attachmentsRef.current) attachmentsRef.current.value = "";
         setErr("");
+        setIsConfirmationOpen(false);
       } else if (!response.ok) {
+        setIsConfirmationOpen(false);
         throw new Error("Error with response");
       }
     } catch (err) {
@@ -109,7 +131,6 @@ const Dashboard = () => {
           />
           {email.message.length > 1 && (
             <button
-              type="button"
               className={classes.removeButton}
               onClick={() => removeParagraph(index)}
             >
@@ -122,48 +143,52 @@ const Dashboard = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1 className={classes.formHeader}>RADAR Email builder</h1>
-      <label htmlFor="subject">Subject</label>
-      <input
-        type="text"
-        id="subject"
-        value={email.subject}
-        className={classes.smallText}
-        onChange={(event) =>
-          setEmail((prevEmail) => ({
-            ...prevEmail,
-            subject: event.target.value,
-          }))
-        }
-        required
-      />
-      <label htmlFor="paragraphs">Paragraphs</label>
-      {renderParagraphs()}
-      <button
-        type="button"
-        className={classes.addButton}
-        onClick={addParagraph}
-      >
-        Add new paragraph
-      </button>
-      <br />
-      <label htmlFor="attachments">
-        Attachments:
+    <>
+      <div>
+        <h1 className={classes.formHeader}>RADAR Email builder</h1>
+        <label htmlFor="subject">Subject</label>
         <input
-          type="file"
-          id="attachments"
-          className={classes.attachments}
-          multiple
-          onChange={(e) => handleFileSelect(e.target.files)}
-          ref={attachmentsRef}
+          type="text"
+          id="subject"
+          value={email.subject}
+          className={classes.smallText}
+          onChange={(event) =>
+            setEmail((prevEmail) => ({
+              ...prevEmail,
+              subject: event.target.value,
+            }))
+          }
+          required
         />
-      </label>
-      <button type="submit" className={classes.submitButton}>
-        Send Email
-      </button>
-      {err && <p className={classes.error}>{err}</p>}
-    </form>
+        <label htmlFor="paragraphs">Paragraphs</label>
+        {renderParagraphs()}
+        <button className={classes.addButton} onClick={addParagraph}>
+          Add new paragraph
+        </button>
+        <br />
+        <label htmlFor="attachments">
+          Attachments:
+          <input
+            type="file"
+            id="attachments"
+            className={classes.attachments}
+            multiple
+            onChange={(e) => handleFileSelect(e.target.files)}
+            ref={attachmentsRef}
+          />
+        </label>
+        <button className={classes.submitButton} onClick={handleSendEmail}>
+          Send Email
+        </button>
+        {err && <p className={classes.error}>{err}</p>}
+      </div>
+      <ConfirmationModal
+        onCancel={() => setIsConfirmationOpen(false)}
+        onConfirm={handleSubmit}
+        isOpen={isConfirmationOpen}
+        confirmationMessage="Your email is ready to be sent to the mailing list. If you wish to proceed, click the confirm button below. If you wish to make any further adjustments to the email, you can click the cancel button."
+      />
+    </>
   );
 };
 

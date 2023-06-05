@@ -21,6 +21,7 @@
 
 .logo {
   height: 80px;
+  background-blend-mode: color-burn;
   margin-left: 1.5%;
   margin-top: auto;
   margin-bottom: auto;

@@ -1,0 +1,41 @@
+.subscribeContainer {
+  margin-top: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.subscribeHeader {
+  color: #000;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0 0 20px;
+}
+
+.subscribeText {
+  color: #555;
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 0 0 30px;
+}
+
+.subscribeVerify {
+  color: #555;
+  font-size: 16px;
+}
+
+.error {
+  color: rgb(237, 73, 73);
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background-color: #ccc;
+  margin: 10px 0;
+}
