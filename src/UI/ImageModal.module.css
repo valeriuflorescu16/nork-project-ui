@@ -17,8 +17,8 @@
   padding-right: 2.5px;
   padding-left: 2.5px;
   padding-bottom: 15px;
-  width: 45%;
-  height: 65%;
+  width: 50%;
+  height: fit-content;
   text-align: center;
 }
 
@@ -28,7 +28,9 @@
 }
 
 .modalDescription {
-  margin-bottom: 2.5%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
 }
 
 .closeModalButton {
@@ -42,4 +44,22 @@
   position: absolute;
   top: 0;
   right: 0.75%;
+}
+
+@media (max-width: 1025px) {
+  .modalContent {
+    width: 60%;
+  }
+}
+
+@media (max-width: 769px) {
+  .modalContent {
+    width: 70%;
+  }
+}
+
+@media (max-width: 481px) {
+  .modalContent {
+    width: 80%;
+  }
 }

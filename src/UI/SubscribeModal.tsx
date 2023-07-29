@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import classes from "./SubscribeModal.module.css";
 import { useRecoilState, useResetRecoilState } from "recoil";
 import { emailAtom } from "../recoil/atoms/emailAtom";
@@ -45,8 +45,6 @@ const SubscribeModal: FC<{
         throw new Error(response.statusText);
       }
 
-      setErr("");
-      resetEmail();
       subscribed(true);
       onCloseModal();
     } catch (error) {
@@ -58,6 +56,11 @@ const SubscribeModal: FC<{
     }
   };
 
+  useEffect(() => {
+    setErr("");
+    resetEmail();
+  }, [showModal, resetEmail]);
+
   return (
     <>
       {showModal && (
@@ -67,11 +70,7 @@ const SubscribeModal: FC<{
               <h2 className={classes.title}>Sign up for email updates</h2>
               <button
                 className={classes.closeModalButton}
-                onClick={() => {
-                  setErr("");
-                  resetEmail();
-                  onCloseModal();
-                }}
+                onClick={() => onCloseModal()}
               >
                 &times;
               </button>

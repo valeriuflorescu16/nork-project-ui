@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Information from "./pages/Information";
 import Header from "./UI/Header";
 import Unsubscribe from "./pages/Unsubscribe";
+import HeaderLinks from "./UI/HeaderLinks";
 
 const getPageTitle = (page: string) => {
   if (page === "/") return "Home";
@@ -25,6 +26,9 @@ function App() {
         <Route path="/unsubscribe/:email" element={<Unsubscribe />} />
         <Route path="*" element={<Home />} />
       </Routes>
+      <div className="showHeaderLinks">
+        <HeaderLinks />
+      </div>
     </div>
   );
 }

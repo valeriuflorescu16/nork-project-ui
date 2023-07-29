@@ -12,3 +12,17 @@
   height: 100vh;
   overflow-y: scroll;
 }
+
+.showHeaderLinks {
+  position: fixed;
+  bottom: 5%;
+  width: 100%;
+  text-align: center;
+  visibility: hidden;
+}
+
+@media (max-width: 769px) {
+  .showHeaderLinks {
+    visibility: visible;
+  }
+}

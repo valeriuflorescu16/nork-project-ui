@@ -1,10 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./Information.module.css";
 import ImageModal from "../UI/ImageModal";
 
 const Information = () => {
   const [selectedImage, setSelectedImage] = useState("");
   const [imageDescription, setImageDescription] = useState("");
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSelectedImage("");
+        setImageDescription("");
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedImage, imageDescription]);
 
   return (
     <div className={classes.container}>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import classes from "./Home.module.css";
 import SubscribeModal from "../UI/SubscribeModal";
@@ -7,6 +7,20 @@ import Subscribe from "./Subscribe";
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setShowModal(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [showModal]);
 
   const onCloseModal = () => {
     setShowModal(false);

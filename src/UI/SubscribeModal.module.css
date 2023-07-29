@@ -67,7 +67,8 @@
   border-radius: 5px;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  text-align: center;
+  width: 70%;
 }
 
 .input:focus {
@@ -79,7 +80,7 @@
   padding: 10px 20px;
   font-size: 16px;
   background-color: #4caf50;
-  width: 30%;
+  width: fit-content;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -101,4 +102,22 @@
 
 .errorBorder {
   border-color: rgb(237, 73, 73) !important;
+}
+
+@media (max-width: 1025px) {
+  .modalContent {
+    width: 60%;
+  }
+}
+
+@media (max-width: 769px) {
+  .modalContent {
+    width: 70%;
+  }
+}
+
+@media (max-width: 481px) {
+  .modalContent {
+    width: 80%;
+  }
 }

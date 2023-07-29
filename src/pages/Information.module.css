@@ -5,15 +5,19 @@
 }
 
 .imageContainer {
+  width: 80%;
   display: flex;
   justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 2.5%;
   margin-top: 5%;
 }
 
 .image {
-  width: 200px;
-  margin-right: 7.5%;
+  width: 22.5%;
+  margin-left: auto;
+  margin-right: auto;
   box-shadow: 10px 10px 5px rgb(106, 135, 106);
 }
 
@@ -23,14 +27,24 @@
 }
 
 .infoContainer {
-  max-width: 800px;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
 }
 
 h2 {
+  font-size: calc(25px + 0.390625vw);
   margin-bottom: 10px;
 }
 
 p {
+  font-size: calc(15px + 0.390625vw);
   margin-bottom: 20px;
+}
+
+@media (max-width: 1025px) {
+  .image {
+    width: 30%;
+  }
 }
