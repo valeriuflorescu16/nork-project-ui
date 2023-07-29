@@ -59,6 +59,9 @@
 }
 
 @media (max-width: 481px) {
+  .closeModalButton {
+    visibility: hidden;
+  }
   .modalContent {
     width: 80%;
   }

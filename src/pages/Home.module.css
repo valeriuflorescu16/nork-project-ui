@@ -49,9 +49,3 @@
   background-color: #e95757;
   cursor: pointer;
 }
-
-@media (max-width: 481px) {
-  .homeCard {
-    margin-top: 15%;
-  }
-}

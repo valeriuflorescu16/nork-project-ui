@@ -39,14 +39,13 @@ const Home = () => {
           <div className={classes.homeCard}>
             <h1 className={classes.homeTitle}>Welcome to RADAR</h1>
             <p className={classes.homeInfo}>
-              A community-based digital alert system notifying Nork residents to
-              new development in your area. The council's current approach to
-              paper distribution of notifications to new development is too
-              narrow, and therefore, undemocratic. The wider the warning the
-              higher number of residents have the opportunity to comment and log
-              their objections without missing vital deadlines. Don't let new
-              development take you by surprise and overshadow your and your
-              neighbor's family homes and gardens!
+              Residents Against Development Alert Response (RADAR) is a
+              community-based service used to notify Nork residents about
+              upcoming developments. By signing up to our subscription service,
+              you will be informed of all the upcoming developments in Nork and
+              how many days you will have to send an objection. Our alert system
+              is designed so that you won’t miss vital deadlines, and can feel
+              more in control of our family homes and green spaces.
             </p>
             <button
               className={classes.homeButton}

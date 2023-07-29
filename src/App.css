@@ -14,8 +14,9 @@
 }
 
 .showHeaderLinks {
+  z-index: 0;
   position: fixed;
-  bottom: 5%;
+  bottom: 1.5%;
   width: 100%;
   text-align: center;
   visibility: hidden;

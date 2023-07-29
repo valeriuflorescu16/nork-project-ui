@@ -65,11 +65,14 @@ const Information = () => {
       <div className={classes.infoContainer}>
         <h2>About Us</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac
-          nulla nunc. Nulla euismod augue eu arcu cursus, non suscipit justo
-          euismod. Nunc congue tortor id enim vulputate, nec fringilla mi
-          tincidunt. Sed pulvinar, ipsum sit amet venenatis sodales, odio elit
-          tincidunt turpis, a lacinia ipsum nisl vel lorem.
+          We have created this subscription service to ensure that our local
+          residents never miss out on objecting to an upcoming development. Our
+          goal is to bring locals together and use our power in numbers to stop
+          developers from urbanising our green garden land.
+        </p>
+        <p>
+          Simply sign up with your email address to receive updates as soon as
+          they’ve been announced.
         </p>
         <h2>Contact Us</h2>
         <p>Email: info@example.com</p>
