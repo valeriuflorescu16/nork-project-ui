@@ -75,8 +75,7 @@ const Information = () => {
           they’ve been announced.
         </p>
         <h2>Contact Us</h2>
-        <p>Email: info@example.com</p>
-        <p>Phone: 555-1234</p>
+        <p>Email: nork.first@outlook.com</p>
       </div>
     </div>
   );
